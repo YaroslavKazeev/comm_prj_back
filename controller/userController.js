@@ -7,18 +7,18 @@ const getLoginPage = (req, res) => {
     res.render('logInPage', {error: " "})
 }
 
-const postLoginPage = async (req, res) => {
+const login = async (req, res) => {
 //   //Check if this user is already in the DB.
     let existedUser = await userModel.findOne({email: req.body.email});
     if (!existedUser) {
-        res.render('loginPage', {
+        res.send('loginPage', {
             error: "user is not exist. So signup first please!",
             success: ""
         })
     } else {
         let isCorrectPass = bcrypt.compareSync(req.body.password, existedUser.password);
         if (!isCorrectPass) {
-            res.render('loginPage', {
+            res.send('loginPage', {
                 error: "user password is not correct!",
                 success: "",
                 user : '',
@@ -44,9 +44,12 @@ const getSignPage = (req, res) => {
     })
 }
 const getSignUpFunction = async (req, res) => {
+
     let existedUser = await userModel.findOne({email: req.body.email});
+
+
     if (existedUser) {
-        res.render('signupPage', {
+        res.send({
             error: "user is exist",
             success: "",
             user: '',
@@ -64,8 +67,7 @@ const getSignUpFunction = async (req, res) => {
 
         newUser.save()
             .then(() => {
-                res.locals.success = "User has been added";
-                res.redirect('/loginPage')
+
             })
             .catch((err) => {
                 throw err
@@ -87,7 +89,7 @@ const logOut = (req, res) => {
 module.exports = {
 
     getLoginPage,
-    postLoginPage,
+login,
     getSignPage,
     getQuestionPage,
     getSignUpFunction,

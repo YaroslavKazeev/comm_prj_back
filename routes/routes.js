@@ -9,7 +9,7 @@ const route = express.Router();
 
 route.get('/',midle.checkHomeTkn,postcontrl.getStartPage);
 route.get('/loginPage',midle.checkLoginToken, contrl.getLoginPage)
-route.post('/login', contrl.postLoginPage)
+route.post('/login', contrl.login)
 
 
 

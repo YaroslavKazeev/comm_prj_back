@@ -19,18 +19,7 @@ const getStartPage = (req, res) => {
             console.log(err);
         })
 }
-const getMainPage = (req, res) => {
-    postModel.find()
 
-        .then(allPosts => {
-            res.render('mainPage', {
-                posts: allPosts
-            })
-        })
-        .catch(err => {
-            console.log(err);
-        })
-}
 const deleteQuestion = (req, res) => {
     postModel.findByIdAndDelete(req.params.id)
         .then(res.send(''))
@@ -41,7 +30,7 @@ const deleteQuestion = (req, res) => {
 const getEditPage = (req, res) => {
 
     postModel.findById(req.params.id)
-        .then(result => res.render('editPage', {post: result}))
+        .then(result => res.send({post: result}))
         .catch(err => (console.log(err)))
 }
 

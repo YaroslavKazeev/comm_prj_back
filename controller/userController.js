@@ -4,21 +4,24 @@ const jwt = require('jsonwebtoken');
 
 
 const getLoginPage = (req, res) => {
-    res.render('logInPage', {error: " "})
+    res.send( {error: " "})
 }
 
 const login = async (req, res) => {
+
+
+
 //   //Check if this user is already in the DB.
     let existedUser = await userModel.findOne({email: req.body.email});
     if (!existedUser) {
-        res.send('loginPage', {
+        res.send( {
             error: "user is not exist. So signup first please!",
             success: ""
         })
     } else {
         let isCorrectPass = bcrypt.compareSync(req.body.password, existedUser.password);
         if (!isCorrectPass) {
-            res.send('loginPage', {
+            res.send( {
                 error: "user password is not correct!",
                 success: "",
                 user : '',
@@ -32,14 +35,18 @@ const login = async (req, res) => {
             }
             let userToken = jwt.sign({infoForToken}, process.env.JWT_TEXT);
             res.cookie("userToken", userToken, {httpOnly: true});
+            let userTokenInfo = {
+                user : infoForToken,
+                token: userToken,
+            }
 
-            res.redirect('/')
+            res.send(userTokenInfo)
         }
     }
 }
 
 const getSignPage = (req, res) => {
-    res.render('signupPage', {
+    res.send( {
         error: ''
     })
 }
@@ -78,12 +85,12 @@ const getSignUpFunction = async (req, res) => {
 }
 
 const getQuestionPage = (req, res) => {
-    res.render('questionPage', {error: ''})
+    res.send({error: ''})
 }
 
 const logOut = (req, res) => {
     res.clearCookie('userToken');
-    res.redirect('/')
+    res.send('/')
 }
 
 module.exports = {

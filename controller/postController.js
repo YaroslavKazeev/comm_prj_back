@@ -118,8 +118,14 @@ const addComment = (req, res) => {
 const deleteComment = (req, res) => {
 
     commentModel.findByIdAndDelete(req.params.id)
-        .then(() => {
-            res.send(`/fullPage/${req.body.postId}`);
+
+        .populate('fromPost')
+                .then(result => {
+                    console.log(result.fromPost._id)
+
+                    res.send(`/fullPage/${result.fromPost._id}`)
+
+
         }).catch((err) => {
         console.log(err);
     });

@@ -30,7 +30,7 @@ const deleteQuestion = (req, res) => {
 const getEditPage = (req, res) => {
 
     postModel.findById(req.params.id)
-        .then(result => res.send({post: result}))
+        .then(result => res.send({posts: result}))
         .catch(err => (console.log(err)))
 }
 

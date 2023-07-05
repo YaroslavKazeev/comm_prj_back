@@ -129,7 +129,7 @@ const logOut = (req, res) => {
 module.exports = {
     getStartPage,
     addNewQuestion,
-    getMainPage,
+
     getEditPage,
     postEdited,
     deleteQuestion,

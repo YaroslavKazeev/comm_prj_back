@@ -24,7 +24,7 @@ route.get('/questionPage', midle.checkToken, contrl.getQuestionPage)
 route.post('/addNewQuestion/:id', midle.checkToken, postcontrl.addNewQuestion)
 route.get('/fullPage/:id', midle.checkHomeTkn, postcontrl.getFullPage)
 
-route.post('/addComment/:ownerId/:postId', midle.checkHomeTkn, postcontrl.addComment)
+route.post('/addComment/:id', midle.checkHomeTkn, postcontrl.addComment)
 route.post('/deleteComment/:id', postcontrl.deleteComment)
 
 route.get('/logout', contrl.logOut)

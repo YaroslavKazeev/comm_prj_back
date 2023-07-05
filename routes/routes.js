@@ -14,7 +14,7 @@ route.post('/login', contrl.login)
 route.get('/signupPage', midle.checkHomeTkn, contrl.getSignPage)
 route.post('/signup', contrl.getSignUpFunction)
 
-route.get('/edit_page/:id', midle.checkToken, postcontrl.getEditPage)
+route.get('/edit_page/:id', midle.checkHomeTkn, postcontrl.getEditPage)
 
 route.post('/editPost/:id', postcontrl.postEdited)
 

@@ -72,8 +72,10 @@ const getFullPage = (req, res) => {
                 .populate('fromPost')
                 .then(comments => {
 
-                    res.send( {posts: result,
-                        comments: comments});
+                    res.send({
+                        posts: result,
+                        comments: comments
+                    });
                 })
                 .catch(err => {
                     console.log(err);
@@ -82,28 +84,32 @@ const getFullPage = (req, res) => {
         })
         .catch(err => {
             console.log(err);
-           ;
+            ;
         });
 };
 
 
 const addComment = (req, res) => {
 
-    const postId = req.params.postId;
-    const ownerId = req.params.ownerId;
+
+    const txt = req.body.txt
+    const postId = req.params.id;
+    const ownerId = req.body.user;
+    const userName = req.body.userName;
     let postObj = {
-        ...req.body,
+        userName: userName,
         owner: ownerId,
         fromPost: postId,
+        comment: txt
     };
 
 
     let newComment = new commentModel(postObj);
     newComment.save()
         .then(() => {
-            res.send(`/question/${req.body.postId}`)
+            res.send(`/fullPage/${postId}`)
         }).catch(err =>
-        console.log(error)
+        console.log(err)
     )
 
 

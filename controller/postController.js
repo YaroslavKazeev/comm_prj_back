@@ -82,17 +82,18 @@ const getFullPage = (req, res) => {
                 .populate('owner')
                 .populate('fromPost')
                 .then(comments => {
-                    console.log(comments)
-                    res.render('fullPage', {post: result, comments: comments});
+
+                    res.send( {posts: result,
+                        comments: comments});
                 })
                 .catch(err => {
                     console.log(err);
-                    res.redirect(`/fullPage${req.params.id}`);
+
                 });
         })
         .catch(err => {
             console.log(err);
-            res.redirect(`/fullPage${req.params.id}`);
+           ;
         });
 };
 

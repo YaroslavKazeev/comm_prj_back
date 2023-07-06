@@ -58,9 +58,12 @@ const postEdited = (req, res) => {
 }
 
 const addNewQuestion = (req, res) => {
+
+
     let postObj = {
         ...req.body,
-        owner: req.params.id
+        owner: req.body.userId,
+
     };
 
     let newPost = new postModel(postObj);

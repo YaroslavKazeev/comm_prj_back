@@ -21,9 +21,13 @@ const getStartPage = (req, res) => {
 }
 
 const deleteQuestion = (req, res) => {
+
+
     postModel.findByIdAndDelete(req.params.id)
-        .then(res.send(''))
-        .catch(err => console.log(err))
+        .then(()=> {
+            res.send('/')
+        })
+        .catch(err =>{ console.log(err)});
 }
 
 

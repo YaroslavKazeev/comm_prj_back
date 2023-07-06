@@ -20,7 +20,7 @@ route.post('/editPost/:id', postcontrl.postEdited)
 route.post('/delete_question/:id', postcontrl.deleteQuestion)
 
 route.get('/questionPage', midle.checkToken, contrl.getQuestionPage)
-route.post('/addNewQuestion/', postcontrl.addNewQuestion)
+route.post('/addNewQuestion', postcontrl.addNewQuestion)
 
 route.get('/fullPage/:id', midle.checkHomeTkn, postcontrl.getFullPage)
 

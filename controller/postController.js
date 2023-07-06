@@ -38,13 +38,6 @@ const getEditPage = (req, res) => {
         .catch(err => (console.log(err)))
 }
 
-const getQuestionPage = (req, res) => {
-
-    postModel.find()
-        .then(result => res.send({posts: result}))
-        .catch(err => (console.log(err)))
-}
-
 const postEdited = (req, res) => {
     postModel.findByIdAndUpdate({_id: req.params.id})
         .then(result => {
@@ -155,14 +148,10 @@ const logOut = (req, res) => {
 module.exports = {
     getStartPage,
     addNewQuestion,
-
     getEditPage,
-    getQuestionPage,
     postEdited,
     deleteQuestion,
     getFullPage,
     addComment,
     deleteComment
-
-
 }
